@@ -5,11 +5,123 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+  <script src="https://code.jquery.com/jquery.js"></script>
   <title>Home Page</title>
 </head>
 
 <body>
+  
   {{{body}}}
+<div class="col-12">
+    <section class="performance-facts" id="performance-facts">
+      <div class="performance-facts__header">
+        <h1 class="performance-facts__title">Nutrition Facts</h1>
+        <p><span id="lnumser">0</span> servings per container</p>
+      </div>
+      <table class="performance-facts__table">
+        <thead>
+          <tr>
+            <th colspan="3" class="amps">Amount Per Serving</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th colspan="2" id="lkcal-val-cal"><b>Calories</b></th>
+            <td class="nob">1774</td>
+          </tr>
+          <tr class="thick-row">
+            <td colspan="3" class="small-info"><b>% Daily Value*</b></td>
+          </tr>
+          <tr>
+            <th colspan="2"><b>Total Fat</b> 18.3 g</th>
+            <td><b>28 %</b></td>
+          </tr>
+          <tr>
+            <td class="blank-cell"></td>
+            <th>Saturated Fat 2 g</th>
+            <td><b>10 %</b></td>
+          </tr>
+          <tr>
+            <td class="blank-cell"></td>
+            <th>Trans Fat -</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th colspan="2"><b>Cholesterol</b> -</th>
+            <td><b>-</b></td>
+          </tr>
+          <tr>
+            <th colspan="2"><b>Sodium</b> 70 mg</th>
+            <td><b>3 %</b></td>
+          </tr>
+          <tr>
+            <th colspan="2"><b>Total Carbohydrate</b> 333.2 g</th>
+            <td><b>111 %</b></td>
+          </tr>
+          <tr>
+            <td class="blank-cell"></td>
+            <th>Dietary Fiber 34.6 g</th>
+            <td><b>138 %</b></td>
+          </tr>
+          <tr>
+            <td class="blank-cell"></td>
+            <th>Total Sugars 30.3 g</th>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="blank-cell"></td>
+            <th>Includes - Added Sugars</th>
+            <td></td>
+          </tr>
+          <tr class="thick-end">
+            <th colspan="2"><b>Protein</b> 70.9 g</th>
+            <td><b>142 %</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="performance-facts__table--grid">
+        <tbody>
+          <tr>
+            <th>Vitamin D -</th>
+            <td><b>-</b></td>
+          </tr>
+          <tr>
+            <th>Calcium 179.1 mg</th>
+            <td><b>18 %</b></td>
+          </tr>
+          <tr>
+            <th>Iron 13.8 mg</th>
+            <td><b>77 %</b></td>
+          </tr>
+          <tr class="thin-end">
+            <th>Potassium 2203.2 mg</th>
+            <td><b>47 %</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small-info" id="small-nutrition-info">*Percent Daily Values are based on a 2000 calorie diet</p>
+    </section>
+  </div>
+  <script>
+    var queryurl = "https://api.edamam.com/search?q=chicken&app_id=5523611c&app_key=b5d9d084b57902b4517c0ce63e217e18&from=0&to=5&calories=591-722&health=alcohol-free"
+    $.ajax({
+      url: queryurl,
+      method: "GET"
+
+    }).then(function (event) {
+      console.log(event);
+    });
+
+    var queryurl1 = "https://api.edamam.com/api/nutrition-data?app_id=7e1b6072&app_key=b2f9db58b673c1dbdf0bbc30928a9d81&ingr=2%20large%20chicken%20breasts";
+    $.ajax({
+      url: queryurl1,
+      method: "GET"
+
+    }).then(function (event) {
+      console.log(event);
+    });
+  </script>
+
 </body>
 
 </html>
