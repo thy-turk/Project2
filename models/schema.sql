@@ -1,17 +1,17 @@
-CREATE DATABASE recipes_db;
+CREATE DATABASE if not exists recipes_db;
 
 USE recipes_db;
 
 CREATE TABLE user_profile (
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(200) NOT NULL,
     fullname VARCHAR(100) NOT NULL,
     bmr INT NOT NULL,
     user_weight INT NOT NULL,
     user_height INT NOT NULL,
     user_age INT NOT NULL,
-    user_sex VARCHAR(1) NOT NULL
+    user_sex VARCHAR(1) NOT NULL,
     primary key (id)
 );
 
