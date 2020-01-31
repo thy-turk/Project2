@@ -1,7 +1,7 @@
 module.exports = function(app, passport) {
   // Home page
   app.get("/", function(req, res) {
-    res.render("index"); // load the index.ejs file
+    res.render("welcome"); // load the index.ejs file
   });
 
   // Shows login form

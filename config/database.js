@@ -1,3 +1,5 @@
+var creds = require("./pass");
+
 if (process.env.JAWSDB_URL) {
   module.exports = {
     connection: {
@@ -12,8 +14,8 @@ if (process.env.JAWSDB_URL) {
   module.exports = {
     connection: {
       host: "localhost",
-      user: "root",
-      password: "password"
+      user: creds.user,
+      password: creds.pass
     },
     database: "recipes_db",
     users_table: "users"
