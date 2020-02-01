@@ -6,6 +6,7 @@ $("#submit").on("click", function () {
     $(".searchResults").show();
 
     var search = $("#recipeSearch").val().trim();
+    $("#recipeSearch").val(" ");
 
     var queryurl = "https://api.edamam.com/search?q=" + search + "&app_id=5523611c&app_key=b5d9d084b57902b4517c0ce63e217e18&from=0&to=10"
 
