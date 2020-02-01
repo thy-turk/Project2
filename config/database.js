@@ -1,4 +1,4 @@
-var creds = require("./pass");
+var creds = require("../pass");
 
 if (process.env.JAWSDB_URL) {
   module.exports = {

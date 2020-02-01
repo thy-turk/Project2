@@ -1,10 +1,37 @@
-<a href="/login" class="btn btn-default btn-sm">Log in</a>
+<html class="welcome">
+<div class="container">
+    <a class="forgot" href="/login">Login</a>
+    <a class="forgot" href="/signup">Signup</a>
+
 <form>
-    <div class= "form-group">
-        <label>
-            Search for Recipe
-        </label>
-        <input type = "text" class = "form-control" id= "recipeSearch">
-        <input type = "submit" id = "submit">
+        <div class="form-group">
+            <label for="recipeSearch">Search for a Recipe</label>
+            <input type="text" class="form-control" id="recipeSearch" placeholder="Search...">
+        </div>
+        <button href="#" type="submit" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+<div class="searchResults">
+    <div class="card">
+        <div class="card-body0">
+
+        </div>
+        <div class="recbutton">
+            <a href="" target="_blank" id="rec0" class="btn btn-primary btn-dark">Cooking Instructions</a>
+            <button href="#" type="submit" id="savebtn" class="btn btn-dark">Save for Later</button>
+        </div>
     </div>
-</form>
+    <div class="card">
+        <div class="card-body1">
+
+        </div>
+        <div class="recbutton">
+            <a href="" target="_blank" id="rec1" class="btn btn-primary btn-dark">Cooking Instructions</a>
+            <button href="#" type="submit" id="savebtn" class="btn btn-dark">Save for Later</button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</html>
