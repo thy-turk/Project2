@@ -1,35 +1,17 @@
-<div class="container">
-
-    <div class="col-sm-6 col-sm-offset-3">
-
-        <h1><span class="fa fa-sign-in"></span> Signup</h1>
-
+<html class="signup">
+<div class="log-form">
+    <h2>Create an Account</h2>
+    <form action="/signup" method="post">
+         <input type="text" title="fullName" placeholder="Full Name" name="fullName" />
+        <input type="text" title="username" placeholder="Username" name="username" />
+        <input type="password" title="username" placeholder="Password" name="password" />
+        <button type="submit" class="btn">Singup</button>
+        <a class="forgot" href="/login">Already Have an Account?</a>
         {{#if message}}
         <div class="alert alert-danger">{{message}}</div>
         {{/if}}
-        <!-- LOGIN FORM -->
-        <form action="/signup" method="post">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control" name="fullName">
-            </div>
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-
-            <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-        </form>
-
-        <hr>
-
-        <p>Already have an account? <a href="/login">Login</a></p>
-        <p>Or go <a href="/">home</a>.</p>
-
-    </div>
-
+    </form>
 </div>
+<!--end log form -->
+
+</html>
