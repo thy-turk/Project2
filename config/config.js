@@ -1,4 +1,4 @@
-var creds = require("./pass");
+var creds = require("../pass");
 
 var config = {
   development: {
