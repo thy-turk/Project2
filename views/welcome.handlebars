@@ -12,9 +12,23 @@
         </form>
     </div>
 </div>
-
-<div class = "searchResults">
-    
+{{!-- put the searchResults class in the top div --}}
+<div class = "">
+    <div class = "resultbox w-full xl:w-3/4">
+        <h1 class = "bg-gray-900 text-white p-5 px-10 text-xl shadow">Example Food</h1>
+        <div class = "flex flex-row bg-white  shadow">
+            <img src = "https://avatarfiles.alphacoders.com/124/thumb-124746.png" alt = "testimage" class = "apimage">
+        </div>
+    </div>
+    {{!-- each sub div from here --}}
+    <div class = "resultbox w-full xl:w-3/4">
+        <h1 class = "bg-gray-900 text-white p-5 px-10 text-xl shadow">Example Food</h1>
+        <div class = "flex flex-col bg-white  shadow">
+            <img src = "https://avatarfiles.alphacoders.com/124/thumb-124746.png" alt = "testimage" class = "apimage">
+            {{!-- other info from api goes here --}}
+        </div>
+    </div>
+    {{!-- to here will be put into the api and repeated--}}
 </div>
 
 <div class="searchResults">

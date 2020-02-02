@@ -12,7 +12,7 @@ INDEX id_UNIQUE (id ASC),
 INDEX username_UNIQUE (username ASC)
 );
 
-CREATE TABLE recipe (
+CREATE TABLE recipes (
     id INT NOT NULL AUTO_INCREMENT,
     recipe_name VARCHAR(50) NOT NULL,
     diet VARCHAR(50) NOT NULL,
