@@ -1,13 +1,22 @@
-module.exports = function(sequelize, DataTypes) {
-  var Profile = sequelize.define("Profile", {
-    username: DataTypes.STRING,
-    bmr: DataTypes.INTEGER,
-    user_weight: DataTypes.INTEGER,
-    user_height: DataTypes.INTEGER,
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT
+module.exports = function (sequelize, DataTypes) {
+  
+  var recipes = sequelize.define("recipes", {
+    userID: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    recipeName: {
+      type:  DataTypes.STRING,
+      allowNull: false,
+    },
+    recipeImage: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    recipeurl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   });
-  return Profile;
+  return recipes;
 };
-
-// module.exports = Profile;

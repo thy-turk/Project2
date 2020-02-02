@@ -1,7 +1,6 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
-var cookieParser = require("cookie-parser");
 var passport = require("passport");
 var flash = require("connect-flash");
 
@@ -15,6 +14,7 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(express.static("config"));
 
 // Handlebars
 app.engine(
@@ -25,9 +25,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Routes
-require("./routes/apiRoutes")(app);
-
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
@@ -36,12 +33,12 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-app.use(cookieParser()); // read cookies (needed for auth)
+app.use(express()); // read cookies (needed for auth)
 
 // required for passport
 app.use(
   session({
-    secret: "vidyapathaisalwaysrunning",
+    secret: "keyboardcat",
     resave: true,
     saveUninitialized: true
   })
@@ -50,7 +47,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// routes
+// Routes
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app, passport);
 
 // Starting the server, syncing our models
