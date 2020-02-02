@@ -1,14 +1,7 @@
-var savedRecipes = [];
-
-
-$(".searchResults").hide();
-
 $("#submit").on("click", function () {
     event.preventDefault();
 
-    $(".searchResults").show();
-
-    var search = $("#recipeSearch").val().trim();
+    var search = $("#recipeSearch").val().trim().split(" ").join("%20");
     $("#recipeSearch").val(" ");
 
     var queryurl = "https://api.edamam.com/search?q=" + search + "&app_id=5523611c&app_key=b5d9d084b57902b4517c0ce63e217e18&from=0&to=10"
@@ -17,17 +10,27 @@ $("#submit").on("click", function () {
         url: queryurl,
         method: "GET"
     }).then(function (response) {
-        for (i = 0; i < 2; i++) {
-            $(".card-body0").text(response.hits[0].recipe.label);
-            apiName = response.hits[0].recipe.label;
-            $(".card-body1").text(response.hits[1].recipe.label);
-            $("#rec0").prop("href", response.hits[0].recipe.url);
-            apiurl = response.hits[0].recipe.url;
-            $("#rec1").prop("href", response.hits[1].recipe.url);
-            apiImage = response.hits[0].recipe.image;
-
+        var results = response.hits;
+        for (let i = 0; i < results.length; i++) {
+            var recipe = results[i].recipe;
+            $("#searchResults").append(
+                "<div class = 'resultbox w-full xl:w-3/4'>" +
+                    "\n<div class = 'flex flex-row justify-between'>" +
+                        "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl shadow'>" + recipe.label + "</h1>" +
+                        "\n<div class = 'flex flex-row'>" +
+                            "\n<a href = '' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
+                            "\n<a href = '#' type = 'submit' class = 'savebtn'>Save for Later</a>" +
+                        "\n</div>" +
+                    "\n</div>" +
+                    "\n<div class = 'flex flex-row bg-white shadow'>" +
+                        "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
+                        "\n<div class = 'nutrition-box' id = 'box" + i + "'" +
+                        "\n</div>" +
+                    "\n</div>" +
+                "\n</div>"
+            );
         }
-        console.log(response);
+        console.log(results[1].recipe);
     });
     
 });
