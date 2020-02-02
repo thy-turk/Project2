@@ -1,5 +1,6 @@
 $("#submit").on("click", function () {
     event.preventDefault();
+    $("#searchResults").empty();
 
     var search = $("#recipeSearch").val().trim().split(" ").join("%20");
     $("#recipeSearch").val(" ");
