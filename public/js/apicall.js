@@ -16,10 +16,10 @@ $("#submit").on("click", function () {
             $("#searchResults").append(
                 "<div class = 'resultbox w-full xl:w-3/4'>" +
                     "\n<div class = 'flex flex-row justify-between'>" +
-                        "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl shadow'>" + recipe.label + "</h1>" +
+                        "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.label + "</h1>" +
                         "\n<div class = 'flex flex-row'>" +
-                            "\n<a href = '' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
-                            "\n<a href = '#' type = 'submit' class = 'savebtn'>Save for Later</a>" +
+                            "\n<a href = '" + recipe.url + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
+                            "\n<a href = '#' type = 'submit' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
                         "\n</div>" +
                     "\n</div>" +
                     "\n<div class = 'flex flex-row bg-white shadow'>" +
@@ -35,7 +35,7 @@ $("#submit").on("click", function () {
     
 });
 
-$("#savebtn").on("click", function(event) {
+$(".savebtn").on("click", function(event) {
     var recipeInfo = {
         recipeName: apiName,
         recipeurl: apiurl,
