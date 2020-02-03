@@ -337,7 +337,6 @@ $("#trackerbtn").on("click", function () {
             });
         }
     });
-    window.location.reload();
 });
 
 $(document).ready(function () {
