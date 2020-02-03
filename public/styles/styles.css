@@ -5,6 +5,13 @@
   background-size: cover;
 }
 
+.profile
+{
+  background-image: url('https://images.unsplash.com/photo-1543364195-bfe6e4932397?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .searchbox
 {
   width: 500px;
