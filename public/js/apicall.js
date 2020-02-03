@@ -30,18 +30,12 @@ $("#submit").on("click", function (event) {
                             "\n<div class = 'flex flex-row' id = 'health" + i + "'>" +
                                 "\n<h2>Health Tags:&nbsp</h2>" + 
                             "\n</div>" +
-                            "\n<div class = 'flex flex-row' id = 'diet" + i + "'>" +
+                            "\n<div class = 'flex flex-row' id = 'diet" + i + "'" +
                                 "\n<h2>Diet Tags:&nbsp</h2>" +
                             "\n</div>" +
-                            "\n<div class = 'flex flex-row' id = 'warn" + i + "'>" +
+                            "\n<div class = 'flex flex-row' id = 'warn" + i + "'" +
                                 "\n<h2>Health Cautions&nbsp</h2>" +
                             "\n</div>" +
-                            "\n<h2>Calories per serving:&nbsp" + Math.floor(recipe.calories / recipe.yield) +
-                            "\n<h2>Servings:&nbsp" + recipe.yield +
-                            "\n<h2>Total Calories:&nbsp" + Math.floor(recipe.calories) +
-                        "\n</div>" +
-                        "\n<div class = 'ingredients-box'>" +
-                            "\n<ul class = 'ml-5 mt-5' id = 'ingred" + i + "'><h3>Ingredients:</h3></ul>" +
                         "\n</div>" +
                     "\n</div>" +
                 "\n</div>"
@@ -50,7 +44,7 @@ $("#submit").on("click", function (event) {
             {
                 for(let h = 0; h < recipe.healthLabels.length; h++)
                 {
-                    if(h <= 4)
+                    if(h <= 5)
                     {
                         $("#health" + i).append(
                             "<div class = 'bg-green-400 rounded-sm mr-1'>" + recipe.healthLabels[h] + "</div>"
@@ -68,7 +62,7 @@ $("#submit").on("click", function (event) {
             {
                 for(let d = 0; d < recipe.dietLabels.length; d++)
                 {
-                    if(d <= 4)
+                    if(d <= 5)
                     {
                         $("#diet" + i).append(
                             "<div class = 'bg-blue-400 rounded-sm mr-1'>" + recipe.dietLabels[d] + "</div>"
@@ -86,7 +80,7 @@ $("#submit").on("click", function (event) {
             {
                 for(let c = 0; c < recipe.cautions.length; c++)
                 {
-                    if(c <= 4)
+                    if(c <= 5)
                     {
                         $("#warn" + i).append(
                             "<div class = 'bg-red-400 rounded-sm mr-1'>" + recipe.cautions[c] + "</div>"
@@ -99,21 +93,6 @@ $("#submit").on("click", function (event) {
                 $("#warn" + i).append(
                     "<div class = 'bg-red-400 rounded-sm mr-1'>None</div>"
                 );
-            }
-            for(let g = 0; g < recipe.ingredientLines.length; g++)
-            {
-                if(g <= 8)
-                {
-                    $("#ingred" + i).append(
-                        "<li>" + recipe.ingredientLines[g] + "</li>"
-                    );
-                }
-                else if(g = 9)
-                {
-                    $("#ingred" + i).append(
-                        "<li>For the full ingredients list, please visit the website</li>" 
-                    );
-                }
             }
         }
         console.log("TEST" + $(this).attr("id"));
@@ -177,18 +156,12 @@ $(document).ready(function () {
                                 "\n<div class = 'flex flex-row' id = 'health" + i + "'>" +
                                     "\n<h2>Health Tags:&nbsp</h2>" + 
                                 "\n</div>" +
-                                "\n<div class = 'flex flex-row' id = 'diet" + i + "'>" +
+                                "\n<div class = 'flex flex-row' id = 'diet" + i + "'" +
                                     "\n<h2>Diet Tags:&nbsp</h2>" +
                                 "\n</div>" +
-                                "\n<div class = 'flex flex-row' id = 'warn" + i + "'>" +
+                                "\n<div class = 'flex flex-row' id = 'warn" + i + "'" +
                                     "\n<h2>Health Cautions&nbsp</h2>" +
                                 "\n</div>" +
-                                "\n<h2>Calories per serving:&nbsp" + Math.floor(recipe.calories / recipe.yield) +
-                                "\n<h2>Servings:&nbsp" + recipe.yield +
-                                "\n<h2>Total Calories:&nbsp" + Math.floor(recipe.calories) +
-                            "\n</div>" +
-                            "\n<div class = 'ingredients-box'>" +
-                                "\n<ul class = 'ml-5 mt-5' id = 'ingred" + i + "'><h3>Ingredients:</h3></ul>" +
                             "\n</div>" +
                         "\n</div>" +
                     "\n</div>"
@@ -198,7 +171,7 @@ $(document).ready(function () {
                 {
                     for(let h = 0; h < healtharray.length; h++)
                     {
-                        if(h <= 4)
+                        if(h <= 5)
                         {
                             $("#health" + i).append(
                                 "<div class = 'bg-green-400 rounded-sm mr-1'>" + healtharray[h] + "</div>"
@@ -217,7 +190,7 @@ $(document).ready(function () {
                 {
                     for(let d = 0; d < dietarray.length; d++)
                     {
-                        if(d <= 4)
+                        if(d <= 5)
                         {
                             $("#diet" + i).append(
                                 "<div class = 'bg-blue-400 rounded-sm mr-1'>" + dietarray[d] + "</div>"
@@ -236,7 +209,7 @@ $(document).ready(function () {
                 {
                     for(let c = 0; c < cautionsarray.length; c++)
                     {
-                        if(c <= 4)
+                        if(c <= 5)
                         {
                             $("#warn" + i).append(
                                 "<div class = 'bg-red-400 rounded-sm mr-1'>" + cautionsarray[c] + "</div>"
@@ -249,22 +222,6 @@ $(document).ready(function () {
                     $("#warn" + i).append(
                         "<div class = 'bg-red-400 rounded-sm mr-1'>None</div>"
                     );
-                }
-                var ingredarray = recipe.ingredientLines.split("~688");
-                for(let g = 0; g < ingredarray.length; g++)
-                {
-                    if(g <= 8)
-                    {
-                        $("#ingred" + i).append(
-                            "<li>" + ingredarray[g] + "</li>"
-                        );
-                    }
-                    else if(g = 9)
-                    {
-                        $("#ingred" + i).append(
-                            "<li>For the full ingredients list, please visit the website</li>" 
-                        );
-                    }
                 }
             }
         });
