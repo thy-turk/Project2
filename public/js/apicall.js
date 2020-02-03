@@ -189,6 +189,7 @@ $("#trackerbtn").on("click", function () {
             });
         }
     });
+    window.location.reload();
 });
 
 $(document).ready(function () {
@@ -226,6 +227,7 @@ $("#newDay").on("click", function () {
         type: "PUT",
         url: "api/tracker",
         data: newDay
-    })
-})
+    });
+    window.location.reload();
+});
 
