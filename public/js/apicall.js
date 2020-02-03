@@ -36,11 +36,16 @@ $("#submit").on("click", function (event) {
         console.log("TEST" + $(this).attr("id"));
         $(document).on("click", ".savebtn", function(event) {
             event.preventDefault();
+            alert("Recipe Saved");
+
+            var diet; var health; var warning; var ingredient;
+
             var foodstuffs = results[$(this).attr("id")].recipe;
-            if(dietLabels.length > 0){var diet = foodstuffs.dietLabels.join("~688")}else{var diet = "none"};
-            if(healthLabels.length > 0){var health = foodstuffs.healthLabels.join("~688")}else{var health = "none"};
-            if(cautions.length > 0){var warning = foodstuffs.cautions.join("~688")}else{var warning = "none"};
-            if(ingredientLines.length > 0){var ingredient = foodstuffs.ingredientLines.join("~688")}else{var ingredient = "none"};
+            if(foodstuffs.dietLabels.length > 0){diet = foodstuffs.dietLabels.join("~688")}else{diet = "none"}
+            if(foodstuffs.healthLabels.length > 0){health = foodstuffs.healthLabels.join("~688")}else{health = "none"}
+            if(foodstuffs.cautions.length > 0){warning = foodstuffs.cautions.join("~688")}else{warning = "none"}
+            if(foodstuffs.ingredientLines.length > 0){ingredient = foodstuffs.ingredientLines.join("~688")}else{ingredient = "none"}
+
             var recipeInfo = {
                 recipeName: foodstuffs.label,
                 recipeImage: foodstuffs.image,
@@ -73,13 +78,14 @@ $(document).ready(function () {
             console.log(response);
             for (let i = 0; i < response.length; i++) {
                 var recipe = response[i];
-                $("#savedRecipes").append(
+                console.log(recipe);
+                $(".savedRecipes").append(
                     "<div class = 'resultbox w-full xl:w-3/4'>" +
                         "\n<div class = 'flex flex-row justify-between'>" +
                             "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.recipeName + "</h1>" +
                             "\n<div class = 'flex flex-row'>" +
                                 "\n<a href = '" + recipe.recipeurl + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
-                                "\n<a href = '#' type = 'submit' id='" + i + "' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
+                                "\n<a href = '#' type = 'submit' id='" + i + "' class = 'deletebtn bg-teal-300 text-white p-5 text-lg shadow'>Delete</a>" +
                             "\n</div>" +
                         "\n</div>" +
                         "\n<div class = 'flex flex-row bg-white shadow'>" +
