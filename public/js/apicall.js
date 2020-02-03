@@ -38,7 +38,7 @@ $("#submit").on("click", function (event) {
             {
                 if(h <= 5)
                 {
-                    $("#health" + h).append(
+                    $("#health" + i).append(
                         "<div class = 'bg-green-400 rounded-sm mr-1'>" + recipe.healthLabels[h] + "</div>"
                     );
                 }
