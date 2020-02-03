@@ -20,7 +20,7 @@ $("#submit").on("click", function () {
                         "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.label + "</h1>" +
                         "\n<div class = 'flex flex-row'>" +
                             "\n<a href = '" + recipe.url + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
-                            "\n<a href = '#' type = 'submit' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
+                            "\n<a href = '#' type = 'submit' id='savebtn' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
                         "\n</div>" +
                     "\n</div>" +
                     "\n<div class = 'flex flex-row bg-white shadow'>" +
@@ -30,50 +30,42 @@ $("#submit").on("click", function () {
                     "\n</div>" +
                 "\n</div>"
             );
+            
         }
+        $(".savebtn").on("click", function(event) {
+            alert("test");
+            var recipeInfo = {
+                recipeName: recipe.label,
+                recipeurl: recipe.url,
+                recipeImage: recipe.label
+            }
+            console.log(recipeInfo)
+            $.ajax({
+                type: "POST",
+                url: "api/addRecipe",
+                data: recipeInfo
+            })
+        });
         console.log(results[1].recipe);
     });
     
 });
 
-$(".savebtn").on("click", function(event) {
-    var recipeInfo = {
-        recipeName: apiName,
-        recipeurl: apiurl,
-        recipeImage: apiImage
+$(document).ready(function () {
+    if (window.location.pathname == "/profile") {
+        $.ajax({
+            url: "api/addRecipe",
+            method: "GET"
+        }).then(function (response) {
+            console.log(response[0]);
+            $(".savedRecipes").append("\nName: " + response[0].recipeName);
+            $("")
+            $("#savedRec").prop("href", response[0].recipeurl);
+        });
     }
-    console.log(recipeInfo)
-    $.ajax({
-        type: "POST",
-        url: "api/addRecipe",
-        data: recipeInfo
-    })
-});
-
-$.ajax({
-    url: "api/addRecipe",
-    method: "GET"
-}).then(function(response) {
-    console.log(response[0]);
-    $(".savedRecipes").append("\nName: " + response[0].recipeName);
-    $("#savedRec").prop("href", response[0].recipeurl);
-});
+})
 
 
-// $("#savebtn").on("click", function () {
-//     function loggedIn(req, res, next) {
-//         if (req.user) {
-//             next();
-//         } else {
-//             res.redirect('/login');
-//         }
-//     }
-//     app.get('/profile', loggedIn, function (req, res, next) {
-//         // req.user - will exist
-//         // load user orders and render them
-//     });
-
-// });
 
 // var queryurl1 = "https://api.edamam.com/api/nutrition-data?app_id=7e1b6072&app_key=b2f9db58b673c1dbdf0bbc30928a9d81&ingr=" 
 // + response.hits[1].recipe.ingredientLines[0].split(" ").join("%20");
