@@ -58,10 +58,7 @@ $(document).ready(function () {
             url: "api/addRecipe",
             method: "GET"
         }).then(function (response) {
-            console.log(response[0]);
-            $(".savedRecipes").append("\nName: " + response[0].recipeName);
-            $("")
-            $("#savedRec").prop("href", response[0].recipeurl);
+            console.log(response);
         });
     }
 })
