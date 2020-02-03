@@ -1,7 +1,8 @@
 module.exports = function(app, passport) {
   // Home page
   app.get("/", function(req, res) {
-    res.render("welcome"); // load the index.ejs file
+    var currentlyloggedin = req.user;
+    res.render("welcome", {isloggedin: currentlyloggedin}); // load the index.ejs file
   });
 
   // Shows login form
@@ -14,7 +15,7 @@ module.exports = function(app, passport) {
   app.post(
     "/login",
     passport.authenticate("local-login", {
-      successRedirect: "/profile", // if success redirect to profile
+      successRedirect: "/", // if success redirect to profile
       failureRedirect: "/login", // if failure redirect to login again
       failureFlash: true // allow flash messages
     }),
