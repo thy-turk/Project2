@@ -26,7 +26,6 @@ $("#submit").on("click", function () {
                     "\n<div class = 'flex flex-row bg-white shadow'>" +
                         "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
                         "\n<div class = 'nutrition-box'>" +
-                        // "\n<div class = 'nutrition-box' id = 'box" + i + "'" +
                         "\n</div>" +
                     "\n</div>" +
                 "\n</div>"
@@ -34,12 +33,12 @@ $("#submit").on("click", function () {
             
         }
         console.log("TEST" + $(this).attr("id"));
-        $(document).on("click", $("#savebtn"), function(event) {
-            alert("click");
+        $(document).on("click", ".savebtn", function(event) {
+            var foodstuffs = results[$(this).attr("id")].recipe;
             var recipeInfo = {
-                recipeName: recipe.label,
-                recipeurl: recipe.url,
-                recipeImage: recipe.label
+                recipeName: foodstuffs.label,
+                recipeurl: foodstuffs.url,
+                recipeImage: foodstuffs.label
             }
             console.log(recipeInfo)
             $.ajax({
