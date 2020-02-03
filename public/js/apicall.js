@@ -253,12 +253,6 @@ $(document).ready(function () {
                             "<li>" + ingredarray[g] + "</li>"
                         );
                     }
-                    else if(g = 9)
-                    {
-                        $("#ingred" + i).append(
-                            "<li>For the full ingredients list, please visit the website</li>" 
-                        );
-                    }
                 }
             }
         });
