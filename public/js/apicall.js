@@ -20,20 +20,22 @@ $("#submit").on("click", function () {
                         "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.label + "</h1>" +
                         "\n<div class = 'flex flex-row'>" +
                             "\n<a href = '" + recipe.url + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
-                            "\n<a href = '#' type = 'submit' id='savebtn' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
+                            "\n<a href = '#' type = 'submit' id='" + i + "' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
                         "\n</div>" +
                     "\n</div>" +
                     "\n<div class = 'flex flex-row bg-white shadow'>" +
                         "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
-                        "\n<div class = 'nutrition-box' id = 'box" + i + "'" +
+                        "\n<div class = 'nutrition-box'>" +
+                        // "\n<div class = 'nutrition-box' id = 'box" + i + "'" +
                         "\n</div>" +
                     "\n</div>" +
                 "\n</div>"
             );
             
         }
-        $(".savebtn").on("click", function(event) {
-            alert("test");
+        console.log("TEST" + $(this).attr("id"));
+        $(document).on("click", $("#savebtn"), function(event) {
+            alert("click");
             var recipeInfo = {
                 recipeName: recipe.label,
                 recipeurl: recipe.url,
