@@ -1,19 +1,11 @@
 <html class="nutrients">
 <div class="flex flex-row bg-gray-100 justify-between shadow">
     <h1 class = "bg-gray-900 text-white p-5 px-10 text-xl shadow">Scorn-u-copia</h1>
-    {{#if isloggedin}}
-        <div class = "flex flex-row">
-            <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/">home</a>
-            <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/profile">profile</a>
-            <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/logout">log out</a>
-        </div>
-    {{/if}}
-    {{#unless isloggedin}}
-        <div class = "flex flex-row">
-            <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/login">login</a>
-            <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/signup">signup</a>
-        </div>
-    {{/unless}}
+    <div class = "flex flex-row">
+        <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/">home</a>
+        <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/profile">profile</a>
+        <a class="bg-teal-300 text-white p-5 text-lg shadow" href="/logout">log out</a>
+    </div>
 </div>
 
 <div class="searchbox flex flex-col bg-white shadow">
