@@ -26,12 +26,23 @@ $("#submit").on("click", function (event) {
                     "\n</div>" +
                     "\n<div class = 'flex flex-row bg-white shadow'>" +
                         "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
-                        "\n<div class = 'nutrition-box'>" +
+                        "\n<div class = 'nutrition-box flex flex-col'>" +
+                            "\n<div class = 'flex flex-row' id = 'health" + i + "'>" +
+                                "\n<h2>Health Tags: </h2>" + 
+                            "\n</div>" +
                         "\n</div>" +
                     "\n</div>" +
                 "\n</div>"
             );
-            
+            for(let h = 0; h < recipe.healthLabels.length; h++)
+            {
+                if(h <= 5)
+                {
+                    $("#health" + h).append(
+                        "<div class = 'bg-green-400 rounded-sm mr-1'>" + recipe.healthLabels[h] + "</div>"
+                    );
+                }
+            }
         }
         console.log("TEST" + $(this).attr("id"));
         $(document).on("click", ".savebtn", function(event) {
