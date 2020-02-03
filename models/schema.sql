@@ -18,7 +18,27 @@ userID INT NOT NULL,
 recipeName VARCHAR(200) NOT NULL,
 recipeImage VARCHAR(200) NOT NULL,
 recipeurl VARCHAR(200) NOT NULL,
+calories INT NOT NULL,
+dietLabels VARCHAR(200) NOT NULL,
+healthLabels VARCHAR(200) NOT NULL,
+ingredientLines VARCHAR(1000) NOT NULL,
+yield INT NOT NULL,
 createdAt DATETIME,
 updatedAt DATETIME,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE trackers (
+id INT NOT NULL AUTO_INCREMENT,
+userID INT,
+calories INT DEFAULT 0,
+fat INT DEFAULT 0,
+cholesterol INT DEFAULT 0,
+sodium INT DEFAULT 0,
+carbs INT DEFAULT 0,
+sugar INT DEFAULT 0,
+protein INT DEFAULT 0,
+createdAt DATETIME DEFAULT 0,
+updatedAt DATETIME DEFAULT 0,
 PRIMARY KEY (id)
 );
