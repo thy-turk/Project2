@@ -1,5 +1,6 @@
-$("#submit").on("click", function () {
+$("#submit").on("click", function (event) {
     event.preventDefault();
+    
     $("#searchResults").empty();
 
     var search = $("#recipeSearch").val().trim().split(" ").join("%20");
@@ -34,6 +35,7 @@ $("#submit").on("click", function () {
         }
         console.log("TEST" + $(this).attr("id"));
         $(document).on("click", ".savebtn", function(event) {
+            event.preventDefault();
             var foodstuffs = results[$(this).attr("id")].recipe;
             if(dietLabels.length > 0){var diet = foodstuffs.dietLabels.join("~688")}else{var diet = "none"};
             if(healthLabels.length > 0){var health = foodstuffs.healthLabels.join("~688")}else{var health = "none"};
