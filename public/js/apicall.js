@@ -108,12 +108,6 @@ $("#submit").on("click", function (event) {
                         "<li>" + recipe.ingredientLines[g] + "</li>"
                     );
                 }
-                else if(g = 9)
-                {
-                    $("#ingred" + i).append(
-                        "<li>For the full ingredients list, please visit the website</li>" 
-                    );
-                }
             }
         }
         console.log("TEST" + $(this).attr("id"));
