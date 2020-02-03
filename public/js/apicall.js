@@ -77,7 +77,7 @@ $("#submit").on("click", function (event) {
         });
         console.log(results[1].recipe);
     });
-    
+
 });
 
 $(document).ready(function () {
@@ -113,16 +113,119 @@ $(document).ready(function () {
 
 
 
-// var queryurl1 = "https://api.edamam.com/api/nutrition-data?app_id=7e1b6072&app_key=b2f9db58b673c1dbdf0bbc30928a9d81&ingr=" 
-// + response.hits[1].recipe.ingredientLines[0].split(" ").join("%20");
+$("#trackerbtn").on("click", function () {
+    $(document).ready(function () {
+        if (window.location.pathname == "/profile") {
+            $.ajax({
+                url: "/api/tracker/",
+                method: "GET"
+            }).then(function (response) {
+                if (response[0] == undefined) {
+                    console.log("undefined");
 
-// $.ajax({
-//     url: queryurl1,
-//     method: "GET"
-// }).then(function (response) {
-//     console.log(response);
-//     $(".card-body0").append("\nCalories" + response.calories);
-//     $(".card-body1").append("\nCalories" + response.calories);
+                    var starter = {
+                        calories: 0,
+                        fat: 0,
+                        cholesterol: 0,
+                        sodium: 0,
+                        carbs: 0,
+                        sugar: 0,
+                        protein: 0
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "api/tracker",
+                        data: starter
+                    })
+                } else {
+                    console.log("defined")
+                    console.log("cals" + response[0].calories);
 
-// });
+                    switch ($("#trackerchoice").val()) {
+                        case "Calories":
+                            trackerUpdate = {
+                                calories: parseInt(response[0].calories) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                        case "Fat":
+                            trackerUpdate = {
+                                fat: parseInt(response[0].fat) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                        case "Cholesterol":
+                            trackerUpdate = {
+                                cholesterol: parseInt(response[0].cholesterol) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                        case "Sodium":
+                            trackerUpdate = {
+                                sodium: parseInt(response[0].sodium) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                        case "Carbs":
+                            trackerUpdate = {
+                                carbs: parseInt(response[0].carbs) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                        case "Sugars":
+                            trackerUpdate = {
+                                sugars: parseInt(response[0].sugars) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                        case "Protein":
+                            trackerUpdate = {
+                                protein: parseInt(response[0].protein) + parseInt($("#trackeramount").val().trim())
+                            }
+                            break;
+                    }
+
+
+                    $.ajax({
+                        type: "PUT",
+                        url: "/api/tracker",
+                        data: trackerUpdate
+                    })
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
+    if (window.location.pathname == "/profile") {
+        $.ajax({
+            url: "api/tracker",
+            method: "GET"
+        }).then(function (response) {
+
+            $(".calories").text(response[0].calories)
+            $(".fat").text(response[0].fat)
+            $(".cholesterol").text(response[0].cholesterol)
+            $(".sodium").text(response[0].sodium)
+            $(".carbs").text(response[0].carbs)
+            $(".sugar").text(response[0].sugar)
+            $(".protein").text(response[0].protein)
+        });
+    }
+})
+
+
+
+
+$("#newDay").on("click", function () {
+    var newDay = {
+        calories: 0,
+        fat: 0,
+        cholesterol: 0,
+        sodium: 0,
+        carbs: 0,
+        sugar: 0,
+        protein: 0
+    }
+    $.ajax({
+        type: "PUT",
+        url: "api/tracker",
+        data: newDay
+    })
+})
 

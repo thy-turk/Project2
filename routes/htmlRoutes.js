@@ -55,6 +55,11 @@ module.exports = function(app, passport) {
     });
   });
 
+  // Nutrient Section
+  app.get("/nutrients", function(req, res) {
+    res.render("nutrients")
+  });
+
   // LOGOUT
   app.get("/logout", function(req, res) {
     req.logout();
