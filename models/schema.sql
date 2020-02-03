@@ -13,10 +13,12 @@ INDEX username_UNIQUE (username ASC)
 );
 
 CREATE TABLE recipes (
-    id INT NOT NULL AUTO_INCREMENT,
-    recipe_name VARCHAR(50) NOT NULL,
-    diet VARCHAR(50) NOT NULL,
-    ingredient VARCHAR(50) NOT NULL,
-    total_time INT NOT NULL,
-    primary key (id)
+id INT NOT NULL AUTO_INCREMENT,
+userID INT NOT NULL,
+recipeName VARCHAR(200) NOT NULL,
+recipeImage VARCHAR(200) NOT NULL,
+recipeurl VARCHAR(200) NOT NULL,
+createdAt DATETIME,
+updatedAt DATETIME,
+PRIMARY KEY (id)
 );
