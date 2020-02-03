@@ -18,10 +18,21 @@
   background-size: cover;
 }
 
+li
+{
+	width: 100%;
+}
+
 .searchbox
 {
   width: 500px;
   margin: 155px auto;
+}
+
+.neutbox
+{
+  width: 550px;
+  margin: 45px auto;
 }
 
 .apimage

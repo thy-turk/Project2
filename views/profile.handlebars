@@ -8,10 +8,10 @@
 	</div>
 </div>
 
-<div class = "resultbox">
-	<form>
-		<label for="exampleFormControlSelect1">What would you like to update?</label>
-		<select class="form-control" id="trackerchoice">
+<div class = "neutbox flex flex-col text-lg bg-white shadow">
+	<h1 class = "bg-gray-900 text-white p-5 px-10 text-xl shadow">Enter your daily caloric intake here.</h1>
+	<form class = "flex flex-row justify-between">
+		<select id="trackerchoice">
 			<option>Calories</option>
 			<option>Fat</option>
 			<option>Cholesterol</option>
@@ -20,21 +20,25 @@
 			<option>Sugars</option>
 			<option>Protein</option>
 		</select>
-		<label for="exampleFormControlInput1">Amount</label>
+		<h1 class = "p-5 text-xl shadow">Amount</h1>
 		<input type="text" class="form-control" id="trackeramount" placeholder="Enter Amount">
-		<button type="submit" id="trackerbtn" class="">Submit</button>
+		<button type="submit" id="trackerbtn" class="bg-teal-300 text-white p-5 self-right text-lg shadow">Submit</button>
 	</form>
-	<button type="submit" id="newDay"class="">New Day</button>
+	<button type="submit" id="newDay"class="bg-gray-900 text-white p-5 text-lg shadow">New Day</button>
 	<div class="tracker">
-		<div class="well">
-			<h3>Calorie Tracker</h3>
-			<p>Calories: <div class="calories"></div></p>
-			<p>Fat: <div class="fat"></div></p>
-			<p>Cholesterol: <div class="cholesterol"></div></p>
-			<p>Sodium: <div class="sodium"></div></p>
-			<p>Carbs: <div class="carbs"></div></p>
-			<p>Sugar: <div class="sugar"></div></p>
-			<p>protein: <div class="protein"></div></p>
+		<div class="flex flex-row justify-around">
+			<div class = "flex flex-col justify-around">
+				<h3>Calorie Tracker</h3>
+				Calories: <div class="calories"></div>
+				Fat: <div class="fat"></div>
+				Cholesterol: <div class="cholesterol"></div>
+			</div>
+			<div class = "flex flex-col justify-around">
+				Sodium: <div class="sodium"></div>
+				Carbs: <div class="carbs"></div>
+				Sugar: <div class="sugar"></div>
+				protein: <div class="protein"></div>
+			</div>
 		</div>
 
 	</div>
