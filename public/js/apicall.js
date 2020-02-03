@@ -1,5 +1,6 @@
-$("#submit").on("click", function () {
+$("#submit").on("click", function (event) {
     event.preventDefault();
+    
     $("#searchResults").empty();
 
     var search = $("#recipeSearch").val().trim().split(" ").join("%20");
@@ -16,28 +17,56 @@ $("#submit").on("click", function () {
             var recipe = results[i].recipe;
             $("#searchResults").append(
                 "<div class = 'resultbox w-full xl:w-3/4'>" +
-                "\n<div class = 'flex flex-row justify-between'>" +
-                "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.label + "</h1>" +
-                "\n<div class = 'flex flex-row'>" +
-                "\n<a href = '" + recipe.url + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
-                "\n<a href = '#' type = 'submit' id='" + i + "' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
-                "\n</div>" +
-                "\n</div>" +
-                "\n<div class = 'flex flex-row bg-white shadow'>" +
-                "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
-                "\n<div class = 'nutrition-box'>" +
-                "\n</div>" +
-                "\n</div>" +
+                    "\n<div class = 'flex flex-row justify-between'>" +
+                        "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.label + "</h1>" +
+                        "\n<div class = 'flex flex-row'>" +
+                            "\n<a href = '" + recipe.url + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
+                            "\n<a href = '#' type = 'submit' id='" + i + "' class = 'savebtn bg-teal-300 text-white p-5 text-lg shadow'>Save for Later</a>" +
+                        "\n</div>" +
+                    "\n</div>" +
+                    "\n<div class = 'flex flex-row bg-white shadow'>" +
+                        "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
+                        "\n<div class = 'nutrition-box flex flex-col'>" +
+                            "\n<div class = 'flex flex-row' id = 'health" + i + "'>" +
+                                "\n<h2>Health Tags: </h2>" + 
+                            "\n</div>" +
+                        "\n</div>" +
+                    "\n</div>" +
                 "\n</div>"
             );
-
+            for(let h = 0; h < recipe.healthLabels.length; h++)
+            {
+                if(h <= 5)
+                {
+                    $("#health" + i).append(
+                        "<div class = 'bg-green-400 rounded-sm mr-1'>" + recipe.healthLabels[h] + "</div>"
+                    );
+                }
+            }
         }
-        $(document).on("click", ".savebtn", function (event) {
+        console.log("TEST" + $(this).attr("id"));
+        $(document).on("click", ".savebtn", function(event) {
+            event.preventDefault();
+            alert("Recipe Saved");
+
+            var diet; var health; var warning; var ingredient;
+
             var foodstuffs = results[$(this).attr("id")].recipe;
+            if(foodstuffs.dietLabels.length > 0){diet = foodstuffs.dietLabels.join("~688")}else{diet = "none"}
+            if(foodstuffs.healthLabels.length > 0){health = foodstuffs.healthLabels.join("~688")}else{health = "none"}
+            if(foodstuffs.cautions.length > 0){warning = foodstuffs.cautions.join("~688")}else{warning = "none"}
+            if(foodstuffs.ingredientLines.length > 0){ingredient = foodstuffs.ingredientLines.join("~688")}else{ingredient = "none"}
+
             var recipeInfo = {
                 recipeName: foodstuffs.label,
+                recipeImage: foodstuffs.image,
                 recipeurl: foodstuffs.url,
-                recipeImage: foodstuffs.label
+                calories: foodstuffs.calories,
+                dietLabels: diet,
+                healthLabels: health,
+                warningLabels: warning,
+                ingredientLines: ingredient,
+                yield: foodstuffs.yield
             }
             console.log(recipeInfo)
             $.ajax({
@@ -57,9 +86,27 @@ $(document).ready(function () {
             url: "api/addRecipe",
             method: "GET"
         }).then(function (response) {
-            $(".savedRecipes").append("\nName: " + response[0].recipeName);
-            $("")
-            $("#savedRec").prop("href", response[0].recipeurl);
+            console.log(response);
+            for (let i = 0; i < response.length; i++) {
+                var recipe = response[i];
+                console.log(recipe);
+                $(".savedRecipes").append(
+                    "<div class = 'resultbox w-full xl:w-3/4'>" +
+                        "\n<div class = 'flex flex-row justify-between'>" +
+                            "\n<h1 class = 'bg-gray-900 text-white p-5 px-10 text-xl flex-1 shadow'>" + recipe.recipeName + "</h1>" +
+                            "\n<div class = 'flex flex-row'>" +
+                                "\n<a href = '" + recipe.recipeurl + "' target = '_blank' class = 'bg-teal-300 text-white p-5 text-lg shadow'>Cooking Instructions</a>" +
+                                "\n<a href = '#' type = 'submit' id='" + i + "' class = 'deletebtn bg-teal-300 text-white p-5 text-lg shadow'>Delete</a>" +
+                            "\n</div>" +
+                        "\n</div>" +
+                        "\n<div class = 'flex flex-row bg-white shadow'>" +
+                            "\n<img src = '" + recipe.recipeImage + "' alt = '" + recipe.recipeName + "' class = 'apimage'>" +
+                            "\n<div class = 'nutrition-box'>" +
+                            "\n</div>" +
+                        "\n</div>" +
+                    "\n</div>"
+                );
+            }
         });
     }
 })
@@ -142,6 +189,7 @@ $("#trackerbtn").on("click", function () {
             });
         }
     });
+    window.location.reload();
 });
 
 $(document).ready(function () {
@@ -179,6 +227,7 @@ $("#newDay").on("click", function () {
         type: "PUT",
         url: "api/tracker",
         data: newDay
-    })
-})
+    });
+    window.location.reload();
+});
 
