@@ -28,18 +28,84 @@ $("#submit").on("click", function (event) {
                         "\n<img src = '" + recipe.image + "' alt = '" + recipe.label + "' class = 'apimage'>" +
                         "\n<div class = 'nutrition-box flex flex-col'>" +
                             "\n<div class = 'flex flex-row' id = 'health" + i + "'>" +
-                                "\n<h2>Health Tags: </h2>" + 
+                                "\n<h2>Health Tags:&nbsp</h2>" + 
                             "\n</div>" +
+                            "\n<div class = 'flex flex-row' id = 'diet" + i + "'>" +
+                                "\n<h2>Diet Tags:&nbsp</h2>" +
+                            "\n</div>" +
+                            "\n<div class = 'flex flex-row' id = 'warn" + i + "'>" +
+                                "\n<h2>Health Cautions&nbsp</h2>" +
+                            "\n</div>" +
+                            "\n<h2>Calories per serving:&nbsp" + Math.floor(recipe.calories / recipe.yield) +
+                            "\n<h2>Servings:&nbsp" + recipe.yield +
+                            "\n<h2>Total Calories:&nbsp" + Math.floor(recipe.calories) +
+                        "\n</div>" +
+                        "\n<div class = 'ingredients-box'>" +
+                            "\n<ul class = 'ml-5 mt-5' id = 'ingred" + i + "'><h3>Ingredients:</h3></ul>" +
                         "\n</div>" +
                     "\n</div>" +
                 "\n</div>"
             );
-            for(let h = 0; h < recipe.healthLabels.length; h++)
+            if(recipe.healthLabels.length > 0)
             {
-                if(h <= 5)
+                for(let h = 0; h < recipe.healthLabels.length; h++)
                 {
-                    $("#health" + i).append(
-                        "<div class = 'bg-green-400 rounded-sm mr-1'>" + recipe.healthLabels[h] + "</div>"
+                    if(h <= 4)
+                    {
+                        $("#health" + i).append(
+                            "<div class = 'bg-green-400 rounded-sm mr-1'>" + recipe.healthLabels[h] + "</div>"
+                        );
+                    }
+                }
+            }
+            else
+            {
+                $("#health" + i).append(
+                    "<div class = 'bg-green-400 rounded-sm mr-1'>None</div>"
+                );
+            }
+            if(recipe.dietLabels.length > 0)
+            {
+                for(let d = 0; d < recipe.dietLabels.length; d++)
+                {
+                    if(d <= 4)
+                    {
+                        $("#diet" + i).append(
+                            "<div class = 'bg-blue-400 rounded-sm mr-1'>" + recipe.dietLabels[d] + "</div>"
+                        );
+                    }
+                }
+            }
+            else
+            {
+                $("#diet" + i).append(
+                    "<div class = 'bg-blue-400 rounded-sm mr-1'>None</div>"
+                );
+            }
+            if(recipe.cautions.length > 0)
+            {
+                for(let c = 0; c < recipe.cautions.length; c++)
+                {
+                    if(c <= 4)
+                    {
+                        $("#warn" + i).append(
+                            "<div class = 'bg-red-400 rounded-sm mr-1'>" + recipe.cautions[c] + "</div>"
+                        );
+                    }
+                }
+            }
+            else
+            {
+                $("#warn" + i).append(
+                    "<div class = 'bg-red-400 rounded-sm mr-1'>None</div>"
+                );
+            }
+            for(let g = 0; g < recipe.ingredientLines.length; g++)
+            {
+                if(g <= 8)
+                {
+                    $("#ingred" + i).append(
+                        "<li>" + recipe.ingredientLines[g] + "</li>"
                     );
                 }
             }
@@ -101,11 +167,93 @@ $(document).ready(function () {
                         "\n</div>" +
                         "\n<div class = 'flex flex-row bg-white shadow'>" +
                             "\n<img src = '" + recipe.recipeImage + "' alt = '" + recipe.recipeName + "' class = 'apimage'>" +
-                            "\n<div class = 'nutrition-box'>" +
+                            "\n<div class = 'nutrition-box flex flex-col'>" +
+                                "\n<div class = 'flex flex-row' id = 'health" + i + "'>" +
+                                    "\n<h2>Health Tags:&nbsp</h2>" + 
+                                "\n</div>" +
+                                "\n<div class = 'flex flex-row' id = 'diet" + i + "'>" +
+                                    "\n<h2>Diet Tags:&nbsp</h2>" +
+                                "\n</div>" +
+                                "\n<div class = 'flex flex-row' id = 'warn" + i + "'>" +
+                                    "\n<h2>Health Cautions&nbsp</h2>" +
+                                "\n</div>" +
+                                "\n<h2>Calories per serving:&nbsp" + Math.floor(recipe.calories / recipe.yield) +
+                                "\n<h2>Servings:&nbsp" + recipe.yield +
+                                "\n<h2>Total Calories:&nbsp" + Math.floor(recipe.calories) +
+                            "\n</div>" +
+                            "\n<div class = 'ingredients-box'>" +
+                                "\n<ul class = 'ml-5 mt-5' id = 'ingred" + i + "'><h3>Ingredients:</h3></ul>" +
                             "\n</div>" +
                         "\n</div>" +
                     "\n</div>"
                 );
+                var healtharray = recipe.healthLabels.split("~688");
+                if(healtharray.length > 0)
+                {
+                    for(let h = 0; h < healtharray.length; h++)
+                    {
+                        if(h <= 4)
+                        {
+                            $("#health" + i).append(
+                                "<div class = 'bg-green-400 rounded-sm mr-1'>" + healtharray[h] + "</div>"
+                            );
+                        }
+                    }
+                }
+                else
+                {
+                    $("#health" + i).append(
+                        "<div class = 'bg-green-400 rounded-sm mr-1'>None</div>"
+                    );
+                }
+                var dietarray = recipe.dietLabels.split("~688");
+                if(dietarray.length > 0)
+                {
+                    for(let d = 0; d < dietarray.length; d++)
+                    {
+                        if(d <= 4)
+                        {
+                            $("#diet" + i).append(
+                                "<div class = 'bg-blue-400 rounded-sm mr-1'>" + dietarray[d] + "</div>"
+                            );
+                        }
+                    }
+                }
+                else
+                {
+                    $("#diet" + i).append(
+                        "<div class = 'bg-blue-400 rounded-sm mr-1'>None</div>"
+                    );
+                }
+                var cautionsarray = recipe.warningLabels.split("~688");
+                if(cautionsarray.length > 0)
+                {
+                    for(let c = 0; c < cautionsarray.length; c++)
+                    {
+                        if(c <= 4)
+                        {
+                            $("#warn" + i).append(
+                                "<div class = 'bg-red-400 rounded-sm mr-1'>" + cautionsarray[c] + "</div>"
+                            );
+                        }
+                    }
+                }
+                else
+                {
+                    $("#warn" + i).append(
+                        "<div class = 'bg-red-400 rounded-sm mr-1'>None</div>"
+                    );
+                }
+                var ingredarray = recipe.ingredientLines.split("~688");
+                for(let g = 0; g < ingredarray.length; g++)
+                {
+                    if(g <= 8)
+                    {
+                        $("#ingred" + i).append(
+                            "<li>" + ingredarray[g] + "</li>"
+                        );
+                    }
+                }
             }
         });
     }
@@ -189,7 +337,6 @@ $("#trackerbtn").on("click", function () {
             });
         }
     });
-    window.location.reload();
 });
 
 $(document).ready(function () {
