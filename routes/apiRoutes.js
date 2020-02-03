@@ -23,14 +23,18 @@ module.exports = function(app) {
   //   });
   // });
 
-  app.post("/api/addRecipe", function(req, res) {
-    // connection.query("INSERT INTO recipes (userID, recipeName, recipeImage, recipeurl");
-  db.recipes.create({
-    ...req.body,
-    userID: req.user
-  }).then(function(event) {
-    res.json(event);
-  });
+  app.post("/api/addRecipe", function (req, res) {
+    if (req.user === undefined) {
+      console.log("Not signed in")
+    } else {
+      console.log("info recieved")
+      db.recipes.create({
+        ...req.body,
+        userID: req.user
+      }).then(function (event) {
+        res.json(event);
+      });
+    }
   });
 
   app.get("/api/addRecipe", function(req, res) {
